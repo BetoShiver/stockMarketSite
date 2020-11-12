@@ -21,9 +21,9 @@ async function getCompanyData() {
         companyName.innerHTML = `${data.profile.companyName} (${symbol})`
     }
     if (change >=0){
-        price.innerHTML = `${data.profile.price} <span style="color:lightgreen;"> ${data.profile.changesPercentage}</span> `
+        price.innerHTML = `$${data.profile.price} <span style="color:lightgreen;"> ${data.profile.changesPercentage}</span> `
     } else (
-        price.innerHTML = `${data.profile.price} <span style="color:red;"> ${data.profile.changesPercentage}</span> `
+        price.innerHTML = `$${data.profile.price} <span style="color:red;"> ${data.profile.changesPercentage}</span> `
     )
     if (data.profile.description) {
         description.innerHTML = ` <b>Description:</b> ${data.profile.description}`
