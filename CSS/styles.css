@@ -1,18 +1,13 @@
 body {
     height: 100vh;
     width: 100vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-image: url(../img/rsz_2pexels-pixabay-210607.jpg);
 }
 
 .search-query {
     text-transform: uppercase;
     font-weight: bold;
-}
-
-.search-background {
-    background-image: url(../img/bckg.jpg);
-    height: 200px;
-    background-repeat: repeat;
 }
 
 .search-area {
@@ -29,15 +24,43 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    height:100vh;
+    min-height: 100vh;
 }
+
+.search-background {
+    background-image: url(../img/bckg.jpg);
+    height: 200px;
+    background-repeat: repeat;
+    opacity: 1.25;
+}
+
 
 #resultsList li {
     list-style-type: none;
     border-bottom: 1px solid gray;
+    margin-top: 1rem;
+    padding-bottom: .4rem;
 }
 
 #resultsList a {
     text-decoration: none;
     color: black;
+    
+}
+
+#resultsList a:hover {
+    text-decoration: none;
+    color: blue;
+    
+}
+
+#chartDiv{
+    width: 100vw;
+}
+
+@media only screen and (max-width: 600px) {
+    .wrapper {
+        width: 100vw;
+    }
+
 }

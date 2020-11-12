@@ -17,7 +17,7 @@
         <div class="container-fluid py-5 search-background">
             <div class="container">
                 <div class="row search-area  bg-light rounded my-2">
-                    <div class="col-6 h4 my-3 d-flex justify-content-end">Please Type Company Symbol</div>
+                    <div class="col-6 h4 my-3 d-flex justify-content-end">Look For Another Company</div>
                     <div class="col-3 input-group">
                         <input id="searchQuery" type="text" class="search-query form-control my-3" placeholder=""
                             aria-label="search-query" aria-describedby="basic-addon2">
@@ -35,18 +35,32 @@
         <div class="container-fluid py-4">
             <div class="row search-area  bg-light rounded my-2">
                 <div id="results" class="col-12 h4 my-3 ">
-                    <ul id="resultsList"></ul>     
-                    
+                    <ul id="resultsList"></ul>
                 </div>
             </div>
             <div class="row company-profile">
-                <div class="col-12">
+                <div id="company-name" class="col-12 text-center h2 font-size-bold">
+                    Loading company Profile
+                </div>
+
+                <div id="price" class="col-12 py-5 text-center display-4">
 
                 </div>
+                <div id="chartDiv" class="col-12 pb-4">
+                    <div id="loading-chart" class="">
+                        <canvas id="chart"></canvas>
+                    </div>
+                </div>
+                <div id="description" class="col-12 pt-3">
+                </div>
+                <div id="website" class="col-12 mt-3">
+                </div>
+
             </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -57,6 +71,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="./js/index.js"></script>
+    <script src="./JS/company.js"></script>
 </body>
 
 </html>

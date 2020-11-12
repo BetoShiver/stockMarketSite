@@ -14,10 +14,9 @@ let showResult = async () => {
     for (let i =0; i< 10; i++) {
         let results =[]
         results[i] = document.createElement('li')
-        results[i].innerHTML = `<a href="./company.html">${data[i].name} (${data[i].symbol})</a>`
+        results[i].innerHTML = `<a href="./company.html?symb= ${data[i].symbol}">${data[i].name} (${data[i].symbol})</a>`
         resultsList.appendChild(results[i])
     }
-
 }
 
 searchBtn.addEventListener("click", showResult )
