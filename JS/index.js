@@ -28,5 +28,19 @@ let showResult = async () => {
     }
 }
 
+async function getMarquee () {
+    let response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/stock/list`)
+    let data = await response.json()
+    let stocks =[]    
+    let marquee = document.getElementById('marquee')
+    for (let i = 0; i < 25; i++){
+        stocks[i] = document.createElement('li')
+        stocks[i].innerHTML =`${data[i].symbol} <span class = 'text-success'>$${data[i].price}</span>`
+        marquee.appendChild(stocks[i])
+    }
+    
+}
 
 searchBtn.addEventListener("click", showResult)
+getMarquee()
+

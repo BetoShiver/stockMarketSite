@@ -54,6 +54,32 @@ body {
     
 }
 
+
+@keyframes marquee {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-150%); }
+}
+
+.marquee-row {
+    overflow: hidden;
+    padding-bottom: 0;
+    margin-bottom: 0;
+
+}
+
+.marquee {
+    white-space: nowrap;
+    font-size: 1.6rem;
+    animation: marquee 70s linear infinite;
+    display: flex;
+}
+
+.marquee li {
+    list-style: none;
+    flex-shrink: 0;
+    padding: 0 1rem;
+}
+
 #chartDiv{
     width: 100vw;
 }
