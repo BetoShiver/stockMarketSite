@@ -15,14 +15,17 @@
     <div class="wrapper bg-light">
         <div class="container-fluid py-5 search-background">
             <div class="container">
-                <div class="row search-area  bg-light rounded my-2">
-                    <div class="col-6 h4 my-3 d-flex justify-content-end">Please Type Company Symbol</div>
+                <div id="form" class="row search-area  bg-light rounded my-2">
+                    <div class="col-6 h4 my-3 d-flex justify-content-end">
+                        Please Type Company Symbol
+                    </div>
                     <div class="col-3 input-group">
-                        <input id="searchQuery" type="text" class="search-query form-control my-3" placeholder=""
-                            aria-label="search-query" aria-describedby="basic-addon2">
+                        <input id="searchQuery" type="text" class="search-query form-control my-3">
                         <div class="input-group-append">
                             <button id="searchBtn" class="query-btn rounded btn btn-outline-secondary bg-warning my-3"
-                                type="button">Button</button>
+                                type="button">
+                                Button
+                            </button>
                         </div>
                     </div>
                     <div class="col-1 my-3 ">
@@ -38,8 +41,7 @@
         <div class="container-fluid py-4">
             <div class="row search-area  bg-light rounded my-2">
                 <div id="results" class="col-12 h4 my-3 ">
-                    <ul id="resultsList"></ul>     
-                    
+                    <ul id="resultsList"></ul>
                 </div>
             </div>
         </div>
@@ -55,11 +57,18 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="./JS/marquee.js"></script>
-    <script src="./js/index.js"></script>
+    <!-- <script src="./js/index.js"></script> -->
+    <script src="./JS/searchForm.js"></script>
+    <script src="./JS/searchResult.js"></script>
     <script>
-        (async function (){
-        const marquee = new Marquee(document.getElementById('marqueeBox'))
-        marquee.load()
+        (async function () {
+            const marquee = new Marquee(document.getElementById('marqueeBox'))
+            marquee.load()
+            const form = new SearchForm(document.getElementById('form'))
+            const results = new SearchResult(document.getElementById('results'))
+            form.onSearch((companies) => {
+              results.renderResults(companies)
+            })
         })()
 
     </script>

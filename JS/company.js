@@ -1,26 +1,20 @@
 let urlParams = new URLSearchParams(window.location.search);
-let loadingChart = document.getElementById('loading-chart')
-let chart = document.getElementById('chart').getContext('2d')
 let companyName = document.getElementById('company-name')
-let price = document.getElementById('price')
 let symbol = urlParams.get('symb')
-let website = document.getElementById('website')
-let chartDiv =document.getElementById('chartDiv')
 
-getCompanyData()
-getChart()
-
-async function getCompanyData() {
+let getCompanyData = async () => {
+    let website = document.getElementById('website')
+    let price = document.getElementById('price')
     let response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${symbol}`)
     let data = await response.json()
     let change = data.profile.changesPercentage
-    change =parseFloat( change.slice(1,-1))
+    change = parseFloat(change.slice(1, -1))
     if (!data.profile.image == '') {
-        companyName.innerHTML = `<img src='${data.profile.image}' height="35">  ${data.profile.companyName} (${symbol})`    
+        companyName.innerHTML = `<img src='${data.profile.image}' height="35">  ${data.profile.companyName} (${symbol})`
     } else {
         companyName.innerHTML = `${data.profile.companyName} (${symbol})`
     }
-    if (change >=0){
+    if (change >= 0) {
         price.innerHTML = `$${data.profile.price} <span style="color:lightgreen;"> ${data.profile.changesPercentage}</span> `
     } else (
         price.innerHTML = `$${data.profile.price} <span style="color:red;"> ${data.profile.changesPercentage}</span> `
@@ -31,27 +25,30 @@ async function getCompanyData() {
         description.innerHTML = ``
     }
     if (data.profile.website) {
-        website.innerHTML = `<b>To visit ${data.profile.companyName}'s website, <a href="${data.profile.website}"> Click Here</a></b> `
+        website.innerHTML = `<b>To visit ${data.profile.companyName}'s website, <a href="${data.profile.website}"> Click Here</a>.</b> `
     } else {
 
     }
 }
 
-async function getChart () {
+let getChart = async () => {
+    let loadingChart = document.getElementById('loading-chart')
+    let chart = document.getElementById('chart').getContext('2d')
+    let chartDiv = document.getElementById('chartDiv')
     loadingChart.classList.add('spinner-border')
     chartDiv.classList.add('d-flex')
     chartDiv.classList.add('justify-content-center')
     let response = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${symbol}?serietype=line`)
-    let chartData = await response.json() 
+    let chartData = await response.json()
     let date = []
     let close = []
-    for (let i = chartData.historical.length-1; i >= 0; i--) {
+    for (let i = chartData.historical.length - 1; i >= 0; i--) {
         date.push(chartData.historical[i].date)
         close.push(chartData.historical[i].close)
     }
     let progressChart = new Chart(chart, {
         type: 'line',
-        data:{
+        data: {
             labels: date,
             datasets: [{
                 label: 'Closing Price',
@@ -59,18 +56,20 @@ async function getChart () {
             }]
         },
         options: {
-            title:{
+            title: {
                 display: true,
                 text: `Closing Stock Price`,
                 fontSize: 22
             },
             legend: {
-                display:false
+                display: false
             }
         }
-    } )
+    })
     loadingChart.classList.remove('spinner-border')
     chartDiv.classList.remove('d-flex')
     chartDiv.classList.remove('justify-content-center')
 }
 
+getCompanyData()
+getChart()

@@ -34,7 +34,6 @@ body {
     opacity: 1.25;
 }
 
-
 #resultsList li {
     list-style-type: none;
     border-bottom: 1px solid gray;
@@ -45,26 +44,26 @@ body {
 #resultsList a {
     text-decoration: none;
     color: black;
-    
 }
 
 #resultsList a:hover {
     text-decoration: none;
     color: blue;
-    
 }
 
-
 @keyframes marquee {
-    0%   { transform: translateX(0%); }
-    100% { transform: translateX(-150%); }
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-150%);
+    }
 }
 
 .marquee-row {
     overflow: hidden;
     padding-bottom: 0;
     margin-bottom: 0;
-
 }
 
 .marquee {
@@ -80,7 +79,7 @@ body {
     padding: 0 1rem;
 }
 
-#chartDiv{
+#chartDiv {
     width: 100vw;
 }
 
@@ -88,5 +87,4 @@ body {
     .wrapper {
         width: 100vw;
     }
-
 }
