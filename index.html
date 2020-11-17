@@ -19,10 +19,11 @@
             <div id="marqueeBox" class="row border marquee-row">
             </div>
         </div>
-        <div id="resultsContainer" class="container-fluid py-4">     
+        <div id="resultsContainer" class="container-fluid py-4">
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -42,11 +43,11 @@
             const form = new SearchForm(document.getElementById('form'))
             const results = new SearchResult(document.getElementById('resultsContainer'))
             form.onSearch((companies) => {
-              results.renderResults(companies)
+                results.renderResults(companies)
             })
         })()
-
     </script>
+    <script src="./JS/highlight.js"></script>
 </body>
 
 </html>

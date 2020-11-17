@@ -1,5 +1,5 @@
-class SearchResult  {
-    
+class SearchResult {
+
 
     constructor(div) {
         div.innerHTML = `
@@ -8,8 +8,8 @@ class SearchResult  {
                 <ul id="resultsList"></ul>
             </div>
         </div>`
-        this.searchQuery =document.getElementById('searchQuery')
-    } 
+        this.searchQuery = document.getElementById('searchQuery')
+    }
 
 
     async renderResults(companies) {

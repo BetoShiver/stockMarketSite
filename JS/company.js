@@ -1,6 +1,8 @@
 let urlParams = new URLSearchParams(window.location.search);
 let companyName = document.getElementById('company-name')
 let symbol = urlParams.get('symb')
+let searchHeader = document.getElementById('searchHeader')
+searchHeader.innerText = 'Look For a Different Company'
 
 let getCompanyData = async () => {
     let website = document.getElementById('website')
