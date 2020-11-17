@@ -25,6 +25,7 @@ body {
     margin-right: auto;
     width: 80%;
     min-height: 100vh;
+    padding-bottom: 2rem;
 }
 
 .search-background {
@@ -49,6 +50,12 @@ body {
 #resultsList a:hover {
     text-decoration: none;
     color: blue;
+}
+
+.company-profile {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 }
 
 @keyframes marquee {

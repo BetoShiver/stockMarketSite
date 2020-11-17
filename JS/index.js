@@ -24,16 +24,16 @@ let showResult = async () => {
         change = parseFloat(change.slice(1, -1))
         results[i] = document.createElement('li')
         if (change >= 0) {
-            results[i].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="./company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:lightgreen;"> ${data2.profile.changesPercentage}</span></a> `
+            results[i].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="/company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:lightgreen;"> ${data2.profile.changesPercentage}</span></a> `
         } else {
-            results[i].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="./company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:red;"> ${data2.profile.changesPercentage}</span></a> `
+            results[i].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="/company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:red;"> ${data2.profile.changesPercentage}</span></a> `
         }
         resultsList.appendChild(results[i])
     }
 }
 
 let addQuery = () => { //WIP
-    window.history.replaceState({}, '', `${window.location.pathname}/?query=${searchQuery.value}`)
+    window.history.replaceState({}, '', `${window.location.hostname}/?query=${searchQuery.value}`)
 }
 
 searchBtn.addEventListener("click", showResult)
