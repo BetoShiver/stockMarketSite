@@ -10,7 +10,7 @@ class SearchForm {
                     Please Type Company Symbol
                 </div>
                 <form class="col-8 col-lg-4 input-group">
-                    <input name:"searchQuery" id="searchQuery" type="text" class="search-query form-control my-3">
+                    <input  autocomplete="off" name:"searchQuery" id="searchQuery" type="text" class="search-query form-control my-3">
                     <div class="input-group-append">
                         <button id="searchBtn" class="query-btn rounded btn btn-outline-secondary bg-warning my-3"
                             type="submit">
