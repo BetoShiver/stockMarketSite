@@ -33,7 +33,7 @@ let showResult = async () => {
 }
 
 let addQuery = () => { //WIP
-    window.history.replaceState({}, '', `${window.location.hostname}/?query=${searchQuery.value}`)
+    window.history.pushState({}, '', `${window.location.hostname}/?query=${searchQuery.value}`)
 }
 
 searchBtn.addEventListener("click", showResult)

@@ -1,3 +1,5 @@
+
+
 class SearchResult {
 
 
@@ -12,12 +14,7 @@ class SearchResult {
     }
 
 
-    async renderResults(companies) {
-        companies.preventDefault()
-        loading.classList.add('spinner-border')
-        let res = await fetch(`https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${this.searchQuery.value}&limit=10&exchange=NASDAQ`)
-        let data = await res.json()
-        loading.classList.remove('spinner-border')
+    async renderResults(data) {
         resultsList.innerHTML = ''
         if (data.length === 0) {
             let noResult = document.createElement('li')
@@ -39,5 +36,6 @@ class SearchResult {
             }
             resultsList.appendChild(results[i])
         }
+      
     }
 }
