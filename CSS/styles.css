@@ -17,6 +17,7 @@ body {
 .btn {
     opacity: 1.25;
     font-weight: 1000;
+    align-self: flex-start;
 }
 
 .wrapper {
@@ -90,8 +91,15 @@ body {
     width: 100vw;
 }
 
-@media only screen and (max-width: 600px) {
+.resultsTitle {
+    font-size: 36px;
+}
+
+@media only screen and (max-width: 530px) {
     .wrapper {
         width: 100vw;
+    }
+    #searchHeader {
+        font-size: 20px;
     }
 }
