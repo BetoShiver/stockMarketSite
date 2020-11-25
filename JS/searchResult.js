@@ -22,28 +22,33 @@ class SearchResult {
       this.searchBtn.innerText = "Search";
       return;
     }
-      let top = Math.min(data.length, 10);
-      let resultsTitle = document.createElement("li");
-      resultsList.innerHTML = `<b class='resultsTitle'>Results</b>`
-      resultsTitle.classList.add('resultsTitle');
-      resultsList.appendChild(resultsTitle);
+    let top = Math.min(data.length, 10);
+    let resultsTitle = document.createElement("li");
+    resultsList.innerHTML = `<b class='resultsTitle'>Results</b>`;
+    resultsTitle.classList.add("resultsTitle");
+    resultsList.appendChild(resultsTitle);
     for (let i = 0; i < top; i++) {
       var res2 = await fetch(
         `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${data[i].symbol}`
       );
       let data2 = await res2.json();
       let results = [];
-      let change = data2.profile.changesPercentage;
-      change = parseFloat(change.slice(1, -1));
-      results[i] = document.createElement("li");
-      if (change >= 0) {
-        results[
-          i
-        ].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="./company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:lightgreen;"> ${data2.profile.changesPercentage}</span></a> `;
-      } else {
-        results[
-          i
-        ].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="./company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:red;"> ${data2.profile.changesPercentage}</span></a> `;
+      try {
+        let change = data2.profile.changesPercentage;
+        change = parseFloat(change.slice(1, -1));
+        results[i] = document.createElement("li");
+        if (change >= 0) {
+          results[
+            i
+          ].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="./company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:lightgreen;"> ${data2.profile.changesPercentage}</span></a> `;
+        } else {
+          results[
+            i
+          ].innerHTML = `<img src='${data2.profile.image}' height="35"> <a href="./company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})<span style="color:red;"> ${data2.profile.changesPercentage}</span></a> `;
+        }
+      } catch {
+        results[i] = document.createElement("li");
+        results[i].innerHTML =`<a href="./company.html?symb= ${data[i].symbol}"> ${data[i].name} (${data[i].symbol})</a> `;
       }
       resultsList.appendChild(results[i]);
     }

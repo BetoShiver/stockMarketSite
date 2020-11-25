@@ -50,7 +50,20 @@ class SearchForm {
   async onSearch(funct) {
     let debounceTimeout;
 
-    searchQuery.addEventListener("input", () => {
+    let handleClick = (e) => {
+      if (debounceTimeout) {
+        clearTimeout(debounceTimeout);
+      }
+      e.preventDefault();
+      this.getCompanies(searchQuery.value).then((data) => {
+        if (searchQuery.value !== "") {
+          funct(data);
+          this.addQuery();
+        }
+      });
+    };
+
+    let handleInput = () => {
       if (debounceTimeout) {
         clearTimeout(debounceTimeout);
       }
@@ -62,23 +75,9 @@ class SearchForm {
           }
         });
       }, 2000);
-    });
+    }
 
-    searchBtn.addEventListener("click", (e) => {
-      if (debounceTimeout) {
-        clearTimeout(debounceTimeout);
-      }
-      let companies = e;
-      companies.preventDefault();
-      this.getCompanies(searchQuery.value).then((data) => {
-        if (searchQuery.value !== "") {
-          funct(data);
-          this.addQuery();
-        }
-      });
-    });
-
-    window.addEventListener("load", async () => {
+    let searchOnLoad = async () => {
       let urlParams = new URLSearchParams(window.location.search);
       let pastQuery = urlParams.get("query");
       if (pastQuery) {
@@ -87,6 +86,12 @@ class SearchForm {
           funct(data);
         });
       }
-    });
+    };
+      
+    searchQuery.addEventListener("input", handleInput);
+
+    searchBtn.addEventListener("click", handleClick);
+
+    window.addEventListener("load", searchOnLoad);
   }
 }
