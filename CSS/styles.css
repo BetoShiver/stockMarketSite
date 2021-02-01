@@ -32,7 +32,8 @@ body {
 .search-background {
     background-image: url(../img/bckg.jpg);
     height: 200px;
-    background-repeat: repeat;
+    width: 100%;
+    background-size: cover;
     opacity: 1.25;
 }
 
