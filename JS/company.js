@@ -1,20 +1,20 @@
-let urlParams = new URLSearchParams(window.location.search);
 let companyName = document.getElementById('company-name')
-let symbol = urlParams.get('symb')
 let searchHeader = document.getElementById('searchHeader')
+let profile = document.getElementById('companyProfile');
+let urlParams = new URLSearchParams(window.location.search);
+let symbol = urlParams.get('symb')
+
 searchHeader.innerText = 'Look For a Different Company'
-let companyProfile = document.getElementById('companyProfile');
 
 let checkIfCompanySymbol = () => {
     if (!symbol) {
         return 'no symbol'
     }
 }
-checkIfCompanySymbol()
 
 let getCompanyData = async () => {
     if (checkIfCompanySymbol() === 'no symbol') {
-        companyProfile.innerHTML=''
+        profile.innerHTML = '';
         return
     } else {
         let website = document.getElementById('website')
@@ -39,7 +39,7 @@ let getCompanyData = async () => {
             description.innerHTML = ``
         }
         if (data.profile.website) {
-            website.innerHTML = `<b>To visit ${data.profile.companyName}'s website, <a href="${data.profile.website}" target=”_blank”> Click Here</a>.</b> `;
+            website.innerHTML = `<b>To visit ${data.profile.companyName}'s website, <a href="${data.profile.website}" target=”_blank”o> Click Here</a>.</b> `;
         } 
      }
 }
