@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container rounded bg-light my-4 px-0 mb-3">
+    <div id='main' class="container rounded bg-light my-4 px-0 mb-3" >
         <div id="form" class="container-fluid py-5 search-background rounded">
         </div>
         <div class="container-fluid">
@@ -23,7 +23,6 @@
         </div>
         <div class="row company-profile pb-4" id='companyProfile'>
         </div>
-    </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js">
@@ -49,14 +48,14 @@
             const marquee = new Marquee(document.getElementById('marqueeBox'))
             marquee.load()
             const form = new SearchForm(document.getElementById('form'))
-            const results = new SearchResult(document.getElementById('resultsContainer'))
             const profile = new CompanyProfile(document.getElementById('companyProfile'))
+            profile.load()
+            const results = new SearchResult(document.getElementById('resultsContainer'))
             form.onSearch((companies) => {
                 results.renderResults(companies)
             })
         })()
     </script>
-    <script src="./JS/company.js"></script>
 </body>
 
 </html>

@@ -43,7 +43,7 @@ class SearchForm {
     if (searchQuery.value !== "") {
       window.history.pushState({}, "", `?query=${searchQuery.value}`);
     } else {
-      window.history.pushState({}, "", `?`);
+      return
     }
   }
 
@@ -55,8 +55,12 @@ class SearchForm {
         clearTimeout(debounceTimeout);
       }
       e.preventDefault();
+      let company = document.getElementById('companyProfile');
+      if (company) {
+        company.innerHTML = '';
+      }
       this.getCompanies(searchQuery.value).then((data) => {
-        if (searchQuery.value !== "") {
+        if (searchQuery.value !== '') {
           funct(data);
           this.addQuery();
         }
@@ -80,6 +84,7 @@ class SearchForm {
     let searchOnLoad = async () => {
       let urlParams = new URLSearchParams(window.location.search);
       let pastQuery = urlParams.get("query");
+  
       if (pastQuery) {
         searchQuery.value = pastQuery;
         this.getCompanies(pastQuery).then((data) => {
