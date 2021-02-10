@@ -88,9 +88,13 @@ body {
     font-size: 36px;
 }
 
+.main{
+    margin-top: 1.5rem;
+}
+
 @media only screen and (max-width: 530px) {
-    .wrapper {
-        width: 100vw;
+    .main{
+        margin-top: 0;
     }
     #searchHeader {
         font-size: 20px;
