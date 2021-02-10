@@ -42,23 +42,25 @@ class SearchForm {
   async addQuery() {
     if (searchQuery.value !== "") {
       window.history.pushState({}, "", `?query=${searchQuery.value}`);
-    } else {
-      return
     }
   }
 
   async onSearch(funct) {
     let debounceTimeout;
 
+    let clearCompany = () => {
+        let company = document.getElementById('companyProfile');
+        if (company) {
+          company.innerHTML = '';
+        }
+    }
+
     let handleClick = (e) => {
       if (debounceTimeout) {
         clearTimeout(debounceTimeout);
       }
       e.preventDefault();
-      let company = document.getElementById('companyProfile');
-      if (company) {
-        company.innerHTML = '';
-      }
+      clearCompany()
       this.getCompanies(searchQuery.value).then((data) => {
         if (searchQuery.value !== '') {
           funct(data);
@@ -84,8 +86,12 @@ class SearchForm {
     let searchOnLoad = async () => {
       let urlParams = new URLSearchParams(window.location.search);
       let pastQuery = urlParams.get("query");
-  
+      if (pastQuery === '') {
+              window.history.pushState({}, '', `?`);
+
+      } 
       if (pastQuery) {
+        clearCompany()
         searchQuery.value = pastQuery;
         this.getCompanies(pastQuery).then((data) => {
           funct(data);

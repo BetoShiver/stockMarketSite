@@ -12,15 +12,7 @@
 </head>
 
 <body>
-    <div class="container my-4 rounded bg-light px-0" id='main'>
-        <div id="form" class="container-fluid rounded py-5 search-background">
-        </div>
-        <div class="container-fluid">
-            <div id="marqueeBox" class="row border marquee-row">
-            </div>
-        </div>
-        <div id="resultsContainer" class="container-fluid ">
-        </div>
+    <div id='main'>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -35,11 +27,13 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous">
     </script>
+    <script src="./JS/indexMain.js"></script>
     <script src="./JS/marquee.js"></script>
     <script src="./JS/searchForm.js"></script>
     <script src="./JS/searchResult.js"></script>
     <script>
         (async function () {
+            const main = new IndexMain(document.getElementById('main'))
             const marquee = new Marquee(document.getElementById('marqueeBox'))
             marquee.load()
             const form = new SearchForm(document.getElementById('form'))

@@ -30,7 +30,7 @@ class CompanyProfile {
 
   async getCompanyData() {
     if (this.checkIfCompanySymbol() === 'no symbol') {
-      profile.innerHTML = '';
+      this.profile.innerHTML = '';
       return
     } else {
       let website = document.getElementById('website');
@@ -39,18 +39,17 @@ class CompanyProfile {
         `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${this.symbol}`
       );
       let data = await response.json();
+      let change = ''
       if (data.profile) {
         if ( data.profile.changesPercentage) {
-          let change = data.profile.changesPercentage;
+          change = data.profile.changesPercentage;
           change = parseFloat(change.slice(1, -1));
-        } else {
-          let change = ''
-        }
+        } 
           
         if (!data.profile.image == '') {
           this.companyName.innerHTML = `<img src='${data.profile.image}' height="35">  ${data.profile.companyName} (${this.symbol})`;
         } else {
-          this.companyName.innerHTML = `${data.profile.companyName} (${symbol})`;
+          this.companyName.innerHTML = `${data.profile.companyName} (${this.symbol})`;
         }
         if (change >= 0) {
           price.innerHTML = `$${data.profile.price} <span style="color:lightgreen;"> ${data.profile.changesPercentage}</span> `;

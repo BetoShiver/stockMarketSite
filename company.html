@@ -12,17 +12,7 @@
 </head>
 
 <body>
-    <div id='main' class="container rounded bg-light my-4 px-0 mb-3" >
-        <div id="form" class="container-fluid py-5 search-background rounded">
-        </div>
-        <div class="container-fluid">
-            <div id="marqueeBox" class="row border marquee-row">
-            </div>
-        </div>
-        <div id="resultsContainer" class="container-fluid py-4">
-        </div>
-        <div class="row company-profile pb-4" id='companyProfile'>
-        </div>
+    <div id='main' >
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js">
@@ -39,12 +29,14 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous">
     </script>
+    <script src="./JS/companyMain.js"></script>
     <script src="./JS/marquee.js"></script>
     <script src="./JS/searchForm.js"></script>
     <script src="./JS/searchResult.js"></script>
     <script src="./JS/companyProfile.js"></script>
     <script>
         (async function () {
+            const main = new CompanyMain(document.getElementById('main'))
             const marquee = new Marquee(document.getElementById('marqueeBox'))
             marquee.load()
             const form = new SearchForm(document.getElementById('form'))
