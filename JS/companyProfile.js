@@ -39,26 +39,35 @@ class CompanyProfile {
         `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${this.symbol}`
       );
       let data = await response.json();
-      let change = data.profile.changesPercentage;
-      change = parseFloat(change.slice(1, -1));
-      if (!data.profile.image == '') {
-        this.companyName.innerHTML = `<img src='${data.profile.image}' height="35">  ${data.profile.companyName} (${this.symbol})`;
+      if (data.profile) {
+        if ( data.profile.changesPercentage) {
+          let change = data.profile.changesPercentage;
+          change = parseFloat(change.slice(1, -1));
+        } else {
+          let change = ''
+        }
+          
+        if (!data.profile.image == '') {
+          this.companyName.innerHTML = `<img src='${data.profile.image}' height="35">  ${data.profile.companyName} (${this.symbol})`;
+        } else {
+          this.companyName.innerHTML = `${data.profile.companyName} (${symbol})`;
+        }
+        if (change >= 0) {
+          price.innerHTML = `$${data.profile.price} <span style="color:lightgreen;"> ${data.profile.changesPercentage}</span> `;
+        } else
+          price.innerHTML = `$${data.profile.price} <span style="color:red;"> ${data.profile.changesPercentage}</span> `;
+        if (data.profile.description) {
+          description.innerHTML = ` <b>Description:</b> ${data.profile.description}`;
+        } else {
+          description.innerHTML = ``;
+        }
+        if (data.profile.website) {
+          website.innerHTML = `<b>To visit ${data.profile.companyName}'s website, <a href="${data.profile.website}" target=”_blank”o> Click Here</a>.</b> `;
+        }
       } else {
-        this.companyName.innerHTML = `${data.profile.companyName} (${symbol})`;
+        this.companyName.innerText= `${this.symbol}\'s information is not available.`
       }
-      if (change >= 0) {
-        price.innerHTML = `$${data.profile.price} <span style="color:lightgreen;"> ${data.profile.changesPercentage}</span> `;
-      } else
-        price.innerHTML = `$${data.profile.price} <span style="color:red;"> ${data.profile.changesPercentage}</span> `;
-      if (data.profile.description) {
-        description.innerHTML = ` <b>Description:</b> ${data.profile.description}`;
-      } else {
-        description.innerHTML = ``;
       }
-      if (data.profile.website) {
-        website.innerHTML = `<b>To visit ${data.profile.companyName}'s website, <a href="${data.profile.website}" target=”_blank”o> Click Here</a>.</b> `;
-      }
-    }
   }
     
   async getChart() {
