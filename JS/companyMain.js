@@ -1,6 +1,6 @@
 class CompanyMain {
     constructor(div) {
-        div.className = 'container rounded bg-light my-4 px-0 mb-3 main';
+        div.className = 'container rounded bg-light px-0  main';
         div.innerHTML = `<div id="form" class="container-fluid py-5 search-background rounded">
         </div>
         <div class="container-fluid">
