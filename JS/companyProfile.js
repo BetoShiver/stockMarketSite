@@ -30,8 +30,6 @@ class CompanyProfile {
     this.urlParams = new URLSearchParams(window.location.search);
     this.symbol = this.urlParams.get('symb');
     this.timeSelected = document.getElementById('selectedTime');
-    this.timeSelected.addEventListener('change', this.getSelected);
-    this.timeLength = this.timeSelected.value;
   }
 
   checkIfCompanySymbol() {
@@ -111,53 +109,21 @@ class CompanyProfile {
   }
 
   async getSelected() {
-    let urlParams = new URLSearchParams(window.location.search); 
-    let symbol = urlParams.get('symb');
-    let selection = document.getElementById('selectedTime');
-    selection= selection.value
-    let response = await fetch(
-      `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${symbol}?serietype=line`
-    );
-    let chartData = await response.json();
+    let selection= this.timeSelected.value
+    let chartData = await this.fetchChartData()
     let length = chartData.historical.length - 1;
+    let conditionalLengthChange = (num) => {
+      if (length > num) {
+        length = num;
+      }
+    }
     if (selection === '7days') {
-      if (length > 7) {
-        length = 7;
+      conditionalLengthChange(7)
       }
-    }
     if (selection === '30days') {
-      if (length > 30) {
-        length = 30;
-      }
+      conditionalLengthChange(22);
     }
-     let date = [];
-     let close = [];
-     for (let i = length; i >= 0; i--) {
-       date.push(chartData.historical[i].date);
-       close.push(chartData.historical[i].close);
-     }
-     let progressChart = new Chart(chart, {
-       type: 'line',
-       data: {
-         labels: date,
-         datasets: [
-           {
-             label: 'Closing Price',
-             data: close
-           }
-         ]
-       },
-       options: {
-         title: {
-           display: true,
-           text: `Closing Stock Price`,
-           fontSize: 22
-         },
-         legend: {
-           display: false
-         }
-       }
-     });
+    this.setChart(chartData, length);
   }
 
   setChart(chartData, length) {
@@ -194,6 +160,8 @@ class CompanyProfile {
   async load() {
     this.getChart();
     this.getCompanyData();
+    this.timeSelected.addEventListener('change', this.getSelected.bind(this));
+
   }
 }
 
